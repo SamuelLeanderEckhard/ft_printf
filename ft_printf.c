@@ -6,7 +6,7 @@
 /*   By: seckhard <seckhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 20:32:47 by seckhard          #+#    #+#             */
-/*   Updated: 2023/09/28 17:52:51 by seckhard         ###   ########.fr       */
+/*   Updated: 2023/09/29 18:51:13 by seckhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,20 @@ static int	ft_format(va_list args, const char format)
 	if (format == 'c')
 		return (ft_putchar((va_arg(args, int))));
 	else if (format == 's')
-		return (ft_putstr(()))
+		return (ft_putstr((va_arg(ags, char *))));
+	else if (format == 'd' || format == 'i')
+		return (ft_putnbr((va_arg(args, int))));
+	else if (format == 'X' || format == 'x')
+		return (ft_puthexa(va_arg(args, unsigned int), format));
+	else if (format == "p")
+		return (ft_handle_ptr(va_arg(args, unsigned long), 0));
+	else if (format == '%')
+		return (ft_putchar('%'));
+	else
+		return (-1);
 }
 
-int		ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list		args;
 	int			i;
@@ -38,7 +48,7 @@ int		ft_printf(const char *str, ...)
 		}
 		else
 			length += ft_putchar(str[i]);
-		i++;	
+		i++;
 	}
 	va_end(args);
 	return (length);

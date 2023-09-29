@@ -6,13 +6,15 @@
 #    By: seckhard <seckhard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 14:56:45 by seckhard          #+#    #+#              #
-#    Updated: 2023/09/28 17:17:03 by seckhard         ###   ########.fr        #
+#    Updated: 2023/09/29 18:44:21 by seckhard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Makefile
 SOURCES = \
 					ft.printf.c ft_putchar.c ft_putchar_fd.c \
+					ft_putstr.c ft_putnbr.c ft_putunsignednbr.c \
+					ft_puthexa.c ft_handle_ptr.c \
 			
 			
 OBJECTS = $(SOURCES:.c=.o)

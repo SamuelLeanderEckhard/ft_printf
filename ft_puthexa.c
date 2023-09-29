@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seckhard <seckhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 17:02:19 by seckhard          #+#    #+#             */
-/*   Updated: 2023/09/29 18:49:13 by seckhard         ###   ########.fr       */
+/*   Created: 2023/09/29 16:59:12 by seckhard          #+#    #+#             */
+/*   Updated: 2023/09/29 17:45:06 by seckhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar_fd(char c, int fd)
+char	ft_puthexa(long int n, char c)
 {
-	write(fd, &c, 1);
-	return (1);
+	char	*hex;
+	int		count;
+
+	count = 0;
+	hex = "0123456789abcdef";
+	if (c == 'X')
+		hex = "0123456789ABCDEF";
+	if (n > 15)
+		count += ft_puthexa(n / 16, c);
+	count += ft_putchar(hex[n % 16]);
+	return (count);
 }

@@ -6,13 +6,29 @@
 /*   By: seckhard <seckhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:11:24 by seckhard          #+#    #+#             */
-/*   Updated: 2023/09/28 18:11:52 by seckhard         ###   ########.fr       */
+/*   Updated: 2023/09/29 18:49:29 by seckhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_putnbr(int n)
+int	ft_putnbr(int n)
 {
-	
+	long int	i;
+
+	i = n;
+	if (n < 0)
+	{
+		ft_putchar('-');
+		i = -n;
+	}
+	if (i <= 9)
+	{
+		ft_putchar(i + 48);
+	}
+	if (i >= 10)
+	{
+		ft_putnbr(i / 10);
+		ft_putnbr(i % 10);
+	}
 }

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_handle_ptr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seckhard <seckhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/27 20:23:28 by seckhard          #+#    #+#             */
-/*   Updated: 2023/09/29 18:46:02 by seckhard         ###   ########.fr       */
+/*   Created: 2023/09/29 18:10:15 by seckhard          #+#    #+#             */
+/*   Updated: 2023/09/29 18:50:27 by seckhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <stdio.h>
-# include <string.h>
-# include <unistd.h>
-# include "./libft/includes/libft.h"
-
-int		ft_printf(const char *str, ...);
-int		ft_putchar_fd(char c, int fd);
-int		ft_putchar(char c);
-int		ft_putstr(char const *s);
-int		ft_putnbr(int n);
-int		ft_putunsignednbr(unsigned int n);
-int		ft_handle_ptr(unsigned long ptr, int c);
 char	ft_puthexa(long int n, char c);
 
-#endif
+int	ft_handle_ptr(unsigned long ptr, int c)
+{
+	int		len;
+
+	len = 0;
+	if (!c)
+	{
+		len += write(1, "0x", 2);
+		c++;
+	}
+	len += ft_puthexa(ptr, c);
+	return (len);
+}
