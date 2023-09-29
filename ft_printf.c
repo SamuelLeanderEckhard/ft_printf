@@ -6,7 +6,7 @@
 /*   By: seckhard <seckhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 20:32:47 by seckhard          #+#    #+#             */
-/*   Updated: 2023/09/29 23:24:06 by seckhard         ###   ########.fr       */
+/*   Updated: 2023/09/29 23:27:55 by seckhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_printf(const char *format, ...)
 	return (length);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	char	c = 's';
 	char	s[] = "Samuel";
@@ -93,4 +93,4 @@ int	main(void)
 	printf("%d\n", resultorginal);
 	ft_printf("%d\n", resultmy);
 	return (0);	
-}
+}*/
