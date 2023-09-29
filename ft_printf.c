@@ -6,50 +6,91 @@
 /*   By: seckhard <seckhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 20:32:47 by seckhard          #+#    #+#             */
-/*   Updated: 2023/09/29 18:51:13 by seckhard         ###   ########.fr       */
+/*   Updated: 2023/09/29 23:24:06 by seckhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_format(va_list args, const char format)
+static int	ft_format(va_list args, char format)
 {
+	int	length;
+
+	length = 0;
 	if (format == 'c')
-		return (ft_putchar((va_arg(args, int))));
+		length += ft_putchar((va_arg(args, int)));
 	else if (format == 's')
-		return (ft_putstr((va_arg(ags, char *))));
+		length += ft_putstr((va_arg(args, char *)));
 	else if (format == 'd' || format == 'i')
-		return (ft_putnbr((va_arg(args, int))));
+		length += ft_putnbr((va_arg(args, int)));
 	else if (format == 'X' || format == 'x')
-		return (ft_puthexa(va_arg(args, unsigned int), format));
-	else if (format == "p")
-		return (ft_handle_ptr(va_arg(args, unsigned long), 0));
+		length += ft_puthexa(va_arg(args, unsigned int), format);
+	else if (format == 'p')
+		length += ft_handle_ptr(va_arg(args, unsigned long), 0);
+	else if (format == 'u')
+		length += ft_putunsignednbr(va_arg(args, unsigned int));
 	else if (format == '%')
-		return (ft_putchar('%'));
-	else
-		return (-1);
+		length += ft_putchar('%');
+	return (length);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list		args;
-	int			i;
 	int			length;
 
-	i = 0;
 	length = 0;
-	va_start(args, str);
-	while (str[i])
+	va_start(args, format);
+	while (*format)
 	{
-		if (str[i] == '%' && ft_strchr("cspdiuxX%", str[i] +1))
+		if (*format != '%')
+			length += ft_putchar(*format);
+		else if (*format == '%')
 		{
-			length += ft_format(args, str[i] + 1);
-			i++;
+			format++;
+			length += ft_format(args, *format);
 		}
-		else
-			length += ft_putchar(str[i]);
-		i++;
+		format++;
 	}
 	va_end(args);
 	return (length);
+}
+
+int	main(void)
+{
+	char	c = 's';
+	char	s[] = "Samuel";
+	void 	*p = 0;
+	int		d = -10;
+	int		i = -10;
+	int		u = 4242;
+	int		x = 12345;
+	int		X = 12345;
+	int		resultorginal;
+	int		resultmy;
+	
+	printf("%c\n", c);
+	ft_printf("%c\n", c);
+	printf("%s\n", s);
+	ft_printf("%s\n", s);
+	printf("%p\n", p);
+	ft_printf("%p\n", p);
+	printf("%d\n", d);
+	ft_printf("%d\n", d);
+	printf("%i\n", i);
+	ft_printf("%i\n", i);
+	printf("%u\n", u);
+	ft_printf("%u\n", u);
+	printf("%x\n", x);
+	ft_printf("%x\n", x);
+	printf("%X\n", X);
+	ft_printf("%X\n", X);
+	printf("%%\n");
+	ft_printf("%%\n");
+	
+	resultorginal = printf("%d\n", d);
+	resultmy = ft_printf("%d\n", d);
+	printf("%d\n", resultorginal);
+	ft_printf("%d\n", resultmy);
+	return (0);	
 }

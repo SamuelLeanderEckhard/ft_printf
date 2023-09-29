@@ -6,7 +6,7 @@
 /*   By: seckhard <seckhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 20:23:28 by seckhard          #+#    #+#             */
-/*   Updated: 2023/09/29 18:46:02 by seckhard         ###   ########.fr       */
+/*   Updated: 2023/09/29 21:58:43 by seckhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
-# include "./libft/includes/libft.h"
 
 int		ft_printf(const char *str, ...);
 int		ft_putchar_fd(char c, int fd);
@@ -27,5 +26,6 @@ int		ft_putnbr(int n);
 int		ft_putunsignednbr(unsigned int n);
 int		ft_handle_ptr(unsigned long ptr, int c);
 char	ft_puthexa(long int n, char c);
+char	*ft_strchr(const char *str, int character);
 
 #endif

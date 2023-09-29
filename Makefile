@@ -6,36 +6,34 @@
 #    By: seckhard <seckhard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 14:56:45 by seckhard          #+#    #+#              #
-#    Updated: 2023/09/29 18:44:21 by seckhard         ###   ########.fr        #
+#    Updated: 2023/09/29 20:02:24 by seckhard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Makefile
 SOURCES = \
-					ft.printf.c ft_putchar.c ft_putchar_fd.c \
+					ft_printf.c ft_putchar.c ft_putchar_fd.c \
 					ft_putstr.c ft_putnbr.c ft_putunsignednbr.c \
-					ft_puthexa.c ft_handle_ptr.c \
-			
-			
+					ft_puthexa.c ft_handle_ptr.c ft_strchr.c \
+
 OBJECTS = $(SOURCES:.c=.o)
 
 BONUS = 
 
 BONUS_OBJECTS = $(BONUS:.c=.o)
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
 
-LIBFTNAME = libft.all
+INCLUDE = ft_printf.h
 
-LIBFTDIR = ./libft
-
-all: $(NAME)
+CFLAGS = -Wall -Wextra -Werror
+LIBC = ar rcs
 
 $(NAME): $(OBJECTS)
-			$(AR) -r $@ $?
+			$(LIBC) $(NAME) $(OBJECTS)
+
+all: $(NAME)
 
 %.o: %.c
 		$(CC) -c $(CFLAGS) $?
