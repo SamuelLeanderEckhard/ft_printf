@@ -6,7 +6,7 @@
 /*   By: seckhard <seckhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 16:57:07 by seckhard          #+#    #+#             */
-/*   Updated: 2023/09/29 18:49:06 by seckhard         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:35:33 by seckhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	ft_putchar(char c)
 {
-	ft_putchar_fd(c, 1);
+	ft_putchar_fd2(c, 1);
 	return (1);
 }
